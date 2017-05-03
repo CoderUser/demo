@@ -1,0 +1,69 @@
+Javascript函数的几种写法
+最近在看某个插件的源码时，总是看到各种不同风格的js函数的写法。（怪我只是初级水平，看的一头雾水）
+
+于是想找点资料，总结总结，心里不清不楚的总是很别扭！
+
+1.常规写法
+
+复制代码
+　　// 函数写法
+    function funName () {
+        alert('常规写法');
+    }
+    // 调用
+    funName();
+复制代码
+2.将方法作为一个对象
+
+复制代码
+　　// 作为对象方法
+    var obj = {
+        funName:function(){
+            alert('这个必须放在一个对象内部，放在外边会出错！');
+        }
+    }
+    // 调用方法
+    obj.funName();
+复制代码
+3.匿名函数
+
+复制代码
+    // 匿名函数
+    var myfun = function(){
+        alert('这是一种声明函数的方式，左边是一个变量，右边是一个函数的表达式，意思就是把一个匿名的函数表达式复制给了变量myfun，只是声明了一个变量指向了一个函数对象。');
+    }
+    // 调用
+    myfun();
+复制代码
+4.构造函数中给对象添加方法，通常在构造函数中用到。
+
+javascript中的每个对象都有prototype属性，Javascript中对象的prototype属性的解释是：返回对象类型原型的引用。
+
+复制代码
+　　// 给对象添加方法
+    var funName = function(){}
+    funName.prototype.myfun = function(){
+        alert('这是在funName函数上的原始对象上加了一个myfun方法，构造函数中用到');
+    }
+    // 调用
+    var funname = new funName();// 创建对象
+    funname.myfun();
+复制代码
+在给对象添加方法时可以用一下方式添加多个方法：
+
+复制代码
+　　// 给对象添加多个方法
+    var funName = function(){}
+    funName.prototype = {
+        fun1:function(){
+            alert('fun1');
+        }
+        ,fun2:function(){
+            alert('fun2');
+        }
+    }
+    // 调用
+    var funname = new funName();// 创建对象
+    funname.fun1();
+    funname.fun2();
+    
